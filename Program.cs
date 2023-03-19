@@ -1,43 +1,25 @@
 using System;
-using System.IO;
-using System.Text.RegularExpressions; 
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Text.RegularExpressions;
+using System.Threading.Tasks;
 
-namespace CollectionStrings
+namespace Strings_and_collections
 {
-    internal class EditPhoneNumbers
+    internal class Program
     {
-        public static void EditorOfPhoneNumbers(string Path)
+        static void Main(string[] args)
         {
-            string FirstNumber = "(012) 345-67-89";
-            string Text = string.Empty;
-            using (System.IO.StreamReader Reader = System.IO.File.OpenText(Path))
-            {
-                Text = Reader.ReadToEnd();
-            }
+            string PathElement = @"C:\";
+            Console.WriteLine("Введите путь к файлу");
+            string Path = Console.ReadLine();
+            DictionaryErrors Errors = new DictionaryErrors();
+            Errors.Words(PathElement + Path);
+            Regex1.Phone(PathElement + Path);
+            Console.ReadLine();
 
-            if (Text.Contains(FirstNumber))
-            {
-                string Pattern = @"\D(\S{4})\D\S*";
-                string Result = "+380 12 345 67 89";
-                Regex regex = new Regex(Pattern);
-                string ResultOfConvert = regex.Replace(FirstNumber, Result);
-                string Fin = Text.Replace(FirstNumber, ResultOfConvert);
-                using (System.IO.StreamWriter File = new System.IO.StreamWriter(Path))
-                {
-                    File.Write(Fin);
-                }
-            }
-            
-            Console.Clear();
-            if (!Text.Contains(FirstNumber))
-            {
-                Console.Write("Не найдены номера, которые нужно заменить");
-            }
-            else
-            {
-                Console.WriteLine("Номера телефонов заменены");
-            }
-            Console.ReadKey();
+
         }
     }
 }
