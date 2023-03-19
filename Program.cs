@@ -1,51 +1,43 @@
 using System;
 using System.IO;
-using System.Runtime.CompilerServices;
-using System.Text.RegularExpressions;
+using System.Text.RegularExpressions; 
 
 namespace CollectionStrings
 {
-    class Document
+    internal class EditPhoneNumbers
     {
-        static void Main(string[] args)
+        public static void EditorOfPhoneNumbers(string Path)
         {
-            Console.Write("Введите путь к документу: ");
-            string Path = Console.ReadLine();
-            FileInfo fileInfo = new FileInfo(Path);
-            if (!fileInfo.Exists)
+            string FirstNumber = "(012) 345-67-89";
+            string Text = string.Empty;
+            using (System.IO.StreamReader Reader = System.IO.File.OpenText(Path))
             {
-                Console.WriteLine("Такого документа не существует.");
+                Text = Reader.ReadToEnd();
             }
-            int UserChoice = 0;
-            while (UserChoice != 2)
+
+            if (Text.Contains(FirstNumber))
             {
-                Console.WriteLine("Меню\n1.Исправление номера.\n2.Заменить неправильные слова.");
-                while (UserChoice < 1 || UserChoice > 2)
+                string Pattern = @"\D(\S{4})\D\S*";
+                string Result = "+380 12 345 67 89";
+                Regex regex = new Regex(Pattern);
+                string ResultOfConvert = regex.Replace(FirstNumber, Result);
+                string Fin = Text.Replace(FirstNumber, ResultOfConvert);
+                using (System.IO.StreamWriter File = new System.IO.StreamWriter(Path))
                 {
-                    if (int.TryParse(Convert.ToString(Console.ReadLine()), out UserChoice) == false)
-                    {
-                        Console.WriteLine("Неправильный ввод");
-                    }
+                    File.Write(Fin);
                 }
-                Console.Clear();
-               
-                switch (UserChoice)
-                {
-                    case 1:
-                        Console.Clear();
-                        EditPhoneNumbers.EditorOfPhoneNumbers(Path);
-                        UserChoice = 0;
-                        break;
-                    case 2:
-                        Console.Clear();
-                        ChangingWords.SearchingWrongWords(Path);
-                        UserChoice = 0;
-                        break;
-                }
-                
+            }
+            
+            Console.Clear();
+            if (!Text.Contains(FirstNumber))
+            {
+                Console.Write("Не найдены номера, которые нужно заменить");
+            }
+            else
+            {
+                Console.WriteLine("Номера телефонов заменены");
             }
             Console.ReadKey();
         }
-
     }
 }
