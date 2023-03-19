@@ -14,7 +14,7 @@ namespace Strings_and_collections
     {
         public static void Phone(string Path)
         {
-            string Pattern = "\\(\\d{3}\\)\\s\\d{3}-\\d{2}-\\d{2}";
+            string pattern = "\\(\\d{3}\\)\\s\\d{3}-\\d{2}-\\d{2}";
             Regex rg = new Regex(pattern);
             string[] array1 = Directory.GetFiles(Path, "*.txt");
             foreach (string File in array1)
@@ -27,7 +27,6 @@ namespace Strings_and_collections
                 MatchCollection matchedAuthors = rg.Matches(str);
                 foreach (Match match in matchedAuthors)
                 {
-
                     string Fin = str.Replace(match.Value, "90381910");
                     using (StreamWriter file = new StreamWriter(File))
                     {
