@@ -14,7 +14,7 @@ namespace StringsCollections
             string PathElement = @"C:\";
             Console.WriteLine("Введите путь к файлу");
             string Path = Console.ReadLine();
-            DictionaryErrors Errors = new DictionaryErrors();
+            WordsErrors Errors = new WordsErrors();
             Errors.Words(PathElement + Path);
             Regex1.Phone(PathElement + Path);
             Console.ReadLine();
