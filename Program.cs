@@ -1,3 +1,6 @@
+/****************************
+*   Лабораторная работа № 5 * 
+*****************************/
 using System;
 using System.Collections.Generic;
 using System.Linq;
