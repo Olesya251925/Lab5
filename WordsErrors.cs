@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace StringsCollections
 {
-    class Errorss
+    class WordsErrors
     {
         public void Words(string Path)
         {
