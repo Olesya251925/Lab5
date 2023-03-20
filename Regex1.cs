@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace StringsCollections
 {
-    class Number
+    class Regex1
     {
         public static void Phone(string Path)
         {
