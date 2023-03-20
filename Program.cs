@@ -5,7 +5,7 @@ using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
-namespace Strings_and_collections
+namespace StringsCollections
 {
     internal class Program
     {
